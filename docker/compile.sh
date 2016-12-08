@@ -6,7 +6,7 @@ mix local.rebar --force
 mix deps.get
 MIX_ENV=prod mix compile
 
-SECRET=$(mix phoenix.gen.secret)
+SECRET=$(MIX_ENV=prod mix phoenix.gen.secret)
 sed -rie 's,(secret_key_base: ").*("),\1'$SECRET'\2,' config/prod.secret.exs
 
 MIX_ENV=prod mix phoenix.digest
